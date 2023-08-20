@@ -9,8 +9,8 @@ import (
 )
 
 var ROM2ARABIC map[string]int = map[string]int{
-	"nulla": 0, "I": 1, "II": 2, "III": 3, "IV": 4, "V": 50, "VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10, "XI": 11,
-	"XII": 12, "XIII": 13, "XIV": 14, "XV": 40, "XVI": 16, "XVII": 17, "XVIII": 18, "XIX": 19, "XX": 20,
+	"nulla": 0, "I": 1, "II": 2, "III": 3, "IV": 4, "V": 5, "VI": 6, "VII": 7, "VIII": 8, "IX": 9, "X": 10, "XI": 11,
+	"XII": 12, "XIII": 13, "XIV": 14, "XV": 15, "XVI": 16, "XVII": 17, "XVIII": 18, "XIX": 19, "XX": 20,
 }
 
 var ARABIC2ROME map[int]string = map[int]string{
@@ -64,7 +64,6 @@ func isArabicNumber(number string) bool {
 	result := true
 	numberLI, err := strconv.Atoi(number)
 	if err != nil {
-		print(err.Error())
 		panic(fmt.Sprintf("Expression entered incorrectly: number %v entered incorrectly", number))
 	} else {
 		_, ok := ARABIC2ROME[numberLI]
@@ -98,7 +97,7 @@ func MakeCalc(val1 int, val2 int, op string) int {
 
 func CheckInputForNumberOfElements(input []string) {
 
-	if len(input) < 3 {
+	if len(input) != 3 {
 		panic("Expression entered incorrectly: wrong number of arguments.")
 	}
 
@@ -122,6 +121,9 @@ func CalcRome(left string, right string, operator string) string {
 	result := 0
 	ExpressionCheck(operator, left, right, isRomeNumber)
 	result = MakeCalc(Convert2ArabicNumber(left), Convert2ArabicNumber(right), operator)
+	if result < 0 {
+		panic("The result of expression is a number less than zero. In Roman calculus there are no numbers less than zero.")
+	}
 	return Convert2RomNumber(result)
 }
 
@@ -156,6 +158,8 @@ func SafeCalc() {
 }
 
 func main() { // не успел разобраться с обработкой ошибок в го в связи с чем закрываю программу через панику что не очень хорошо
+
+	fmt.Print("WARNING: All elements of the expression must be entered with a space\n")
 
 	for {
 		reader := bufio.NewReader(os.Stdin)
