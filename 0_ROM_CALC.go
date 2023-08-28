@@ -78,7 +78,7 @@ func MakeCalc(val1 int, val2 int, op string) int {
 	result := 0
 
 	if val1 > 10 || val2 > 10 {
-		panic("Expression entered incorrectly: number is too big")
+		panic("Expression entered incorrectly: result number is too big")
 	}
 
 	switch op {
@@ -164,8 +164,8 @@ func main() { // не успел разобраться с обработкой 
 	for {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Type your expression: ")
-		text, _ := reader.ReadString('\n')
-		toCalc := strings.Split(text[0:(len(text)-2)], " ")
+		text, _, _ := reader.ReadLine()
+		toCalc := strings.Split(string(text), " ")
 		fmt.Print("Answer: " + Calc(toCalc) + "\n")
 	}
 
