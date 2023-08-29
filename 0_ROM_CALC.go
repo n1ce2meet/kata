@@ -77,6 +77,10 @@ func isArabicNumber(number string) bool {
 func MakeCalc(val1 int, val2 int, op string) int {
 	result := 0
 
+	if val1 < 1 || val2 < 1 {
+		panic("Expression entered incorrectly: entered number is too small")
+	}
+
 	if val1 > 10 || val2 > 10 {
 		panic("Expression entered incorrectly: entered number is too big")
 	}
