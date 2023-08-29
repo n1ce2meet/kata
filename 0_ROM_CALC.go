@@ -78,7 +78,7 @@ func MakeCalc(val1 int, val2 int, op string) int {
 	result := 0
 
 	if val1 > 10 || val2 > 10 {
-		panic("Expression entered incorrectly: result number is too big")
+		panic("Expression entered incorrectly: entered number is too big")
 	}
 
 	switch op {
