@@ -161,12 +161,10 @@ func main() { // не успел разобраться с обработкой 
 
 	fmt.Print("WARNING: All elements of the expression must be entered with a space\n")
 
-	for {
-		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Type your expression: ")
-		text, _, _ := reader.ReadLine()
-		toCalc := strings.Split(string(text), " ")
-		fmt.Print("Answer: " + Calc(toCalc) + "\n")
-	}
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Type your expression: ")
+	text, _, _ := reader.ReadLine()
+	toCalc := strings.Split(string(text), " ")
+	fmt.Print("Answer: " + Calc(toCalc) + "\n")
 
 }
